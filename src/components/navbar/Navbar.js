@@ -1,7 +1,7 @@
 import { Nav, Logo, DropMenu, Menu, MenuLink } from "./Navbar.styles";
 import { useState } from "react";
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Nav>
@@ -22,5 +22,3 @@ const Navbar = () => {
     </Nav>
   );
 };
-
-export default Navbar;

@@ -1,6 +1,9 @@
 import { useState } from "react";
-import Navbar from "../../components/Navbar.js/Navbar";
+import { Navbar } from "../../components/navbar/Navbar";
+import { MatchCardRight } from "../../components/matchCards/MatchCardRight";
+import { MatchCardLeft } from "../../components/matchCards/MatchCardLeft";
 import {
+  Button,
   ContainerNav,
   BannerContainer,
   CurrentMatches,
@@ -8,24 +11,14 @@ import {
   HomeFlex,
   ButtonContainer,
 } from "./Home.styles";
+import { CardSection } from "../../components/matchCards/MatchCard.styles";
+import { TeamContainer } from "../../components/teamCards/TeamCard.styles";
+
+import { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import teams from "/home/paulotasso/Projetos/championships-platform/src/utils/teams.json";
 
 function Home() {
-  const [matchRoute, setMatchRoute] = useState("");
-
-  const handleOnClick = (state) => {
-    if (matchRoute === "next") {
-      return (document.getElementById("next-match").style.background = "red");
-    }
-
-    if (matchRoute === "results") {
-      return (document.getElementById("results").style.background = "red");
-    }
-    if (matchRoute === "current") {
-      return (document.getElementById("current-match").style.background =
-        "red");
-    }
-  };
-
   return (
     <HomeFlex>
       <ContainerNav>
@@ -33,7 +26,7 @@ function Home() {
       </ContainerNav>
       <BannerContainer id="container-test">
         <img
-          src="https://cdn.wallpapersafari.com/82/51/csEFDb.jpg"
+          src="https://wallpapercave.com/wp/wp9221335.jpg"
           alt="home-banner"
         ></img>
         <p>
@@ -42,43 +35,75 @@ function Home() {
           platform
         </p>
       </BannerContainer>
-      <CurrentMatches id="matches-box">
+      <CurrentMatches
+        id="matches-box"
+        style={{
+          justifyContent: "center",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
         <ButtonContainer>
           <MatchLink>
-            <button
-              id="current-match"
-              onClick={() => {
-                setMatchRoute("current");
-                handleOnClick();
-              }}
-            >
-              CURRENT MATCHES
-            </button>
+            <Button>CURRENT MATCHES</Button>
           </MatchLink>
           <MatchLink>
-            <button
-              id="next-match"
-              onClick={() => {
-                setMatchRoute("next");
-                handleOnClick();
-              }}
-            >
-              NEXT MATCHES
-            </button>
+            <Button>NEXT MATCHES</Button>
           </MatchLink>
           <MatchLink>
-            <button
-              id="results"
-              onClick={() => {
-                setMatchRoute("results");
-                handleOnClick();
-              }}
-            >
-              RESULTS
-            </button>
+            <Button>RESULTS</Button>
           </MatchLink>
         </ButtonContainer>
+        <CardSection>
+          <MatchCardLeft></MatchCardLeft>
+          <div
+            style={{
+              background: "green",
+              height: "150px",
+              width: "30%",
+            }}
+          ></div>
+          <MatchCardRight></MatchCardRight>
+        </CardSection>
+        <CardSection>
+          <MatchCardLeft></MatchCardLeft>
+          <div
+            style={{
+              background: "green",
+              height: "150px",
+              width: "30%",
+            }}
+          ></div>
+          <MatchCardRight></MatchCardRight>
+        </CardSection>
+        <CardSection>
+          <MatchCardLeft></MatchCardLeft>
+          <div
+            style={{
+              background: "green",
+              height: "150px",
+              width: "30%",
+            }}
+          ></div>
+          <MatchCardRight></MatchCardRight>
+        </CardSection>
       </CurrentMatches>
+
+      <Swiper
+        spaceBetween={40}
+        slidesPerView={4}
+        loop={true}
+        centerInsufficientSlides={true}
+        centeredSlides={false}
+        centeredSlidesBounds={true}
+        autoplay={true}
+        speed={300}
+        modules={[Autoplay]}
+      >
+        <TeamContainer></TeamContainer>
+        <TeamContainer style={{ background: "red" }}></TeamContainer>
+        <TeamContainer style={{ background: "green" }}></TeamContainer>
+      </Swiper>
     </HomeFlex>
   );
 }

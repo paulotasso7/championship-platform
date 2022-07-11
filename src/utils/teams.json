@@ -1,0 +1,86 @@
+[
+  {
+    "TeamId": 1,
+    "name": "Hyper Gorilas",
+    "active": true,
+    "imgs": "./src/assets/images/team1.png",
+    "matches": [
+      {
+        "matchId": 1,
+        "date": "24/06/2011",
+        "score": 5,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 2,
+        "date": "26/7/2011",
+        "score": 7,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 3,
+        "date": "",
+        "score": 15,
+        "tournament": "tournament 2"
+      }
+    ]
+  },
+  {
+    "teamId": 2,
+    "name": "Ultra Bulls",
+    "active": true,
+    "imgs": "src/assets/images/team2.png",
+    "matches": [
+      {
+        "matchId": 1,
+        "date": "24/06/2011",
+        "score": 9,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 2,
+        "date": "26/7/2011",
+        "score": 8,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 3,
+        "date": "04/09/2020",
+        "score": 15,
+        "tournament": "tournament 2"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Same Sequois",
+    "active": true,
+    "imgs": "src/assets/images/team3.png"
+  },
+  {
+    "id": 1,
+    "name": "Hyper Gorilas",
+    "active": true,
+    "imgs": "src/assets/images/team1.png",
+    "matches": [
+      {
+        "matchId": 1,
+        "date": "24/06/2011",
+        "score": 5,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 2,
+        "date": "26/7/2011",
+        "score": 7,
+        "tournament": "tournament 1"
+      },
+      {
+        "matchId": 3,
+        "date": "",
+        "score": 15,
+        "tournament": "tournament 2"
+      }
+    ]
+  }
+]
