@@ -1,7 +1,6 @@
-import { useState } from "react";
+//components import
 import { Navbar } from "../../components/navbar/Navbar";
-import { MatchCardRight } from "../../components/matchCards/MatchCardRight";
-import { MatchCardLeft } from "../../components/matchCards/MatchCardLeft";
+import { MatchCard } from "../../components/matchCards/MatchCard";
 import {
   Button,
   ContainerNav,
@@ -12,11 +11,15 @@ import {
   ButtonContainer,
 } from "./Home.styles";
 import { CardSection } from "../../components/matchCards/MatchCard.styles";
-import { TeamContainer } from "../../components/teamCards/TeamCard.styles";
+import { TeamCard } from "../../components/teamCards/TeamCard";
 
-import { Autoplay } from "swiper";
+//carousel imports
 import { Swiper, SwiperSlide } from "swiper/react";
-// import teams from "/home/paulotasso/Projetos/championships-platform/src/utils/teams.json";
+import { Autoplay } from "swiper";
+import "swiper/css";
+
+//data import
+import teams from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
 
 function Home() {
   return (
@@ -26,7 +29,7 @@ function Home() {
       </ContainerNav>
       <BannerContainer id="container-test">
         <img
-          src="https://wallpapercave.com/wp/wp9221335.jpg"
+          src="https://cdn.wallpapersafari.com/42/75/d8ptQ3.jpg"
           alt="home-banner"
         ></img>
         <p>
@@ -35,74 +38,69 @@ function Home() {
           platform
         </p>
       </BannerContainer>
-      <CurrentMatches
-        id="matches-box"
-        style={{
-          justifyContent: "center",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
+      <CurrentMatches id="matches-box">
         <ButtonContainer>
-          <MatchLink>
+          <MatchLink key={1}>
             <Button>CURRENT MATCHES</Button>
           </MatchLink>
-          <MatchLink>
-            <Button>NEXT MATCHES</Button>
+          <MatchLink key={2}>
+            <Button style={{ display: "flex", justifySelf: "center" }}>
+              NEXT MATCHES
+            </Button>
           </MatchLink>
-          <MatchLink>
+          <MatchLink key={3}>
             <Button>RESULTS</Button>
           </MatchLink>
         </ButtonContainer>
-        <CardSection>
-          <MatchCardLeft></MatchCardLeft>
-          <div
-            style={{
-              background: "green",
-              height: "150px",
-              width: "30%",
-            }}
-          ></div>
-          <MatchCardRight></MatchCardRight>
-        </CardSection>
-        <CardSection>
-          <MatchCardLeft></MatchCardLeft>
-          <div
-            style={{
-              background: "green",
-              height: "150px",
-              width: "30%",
-            }}
-          ></div>
-          <MatchCardRight></MatchCardRight>
-        </CardSection>
-        <CardSection>
-          <MatchCardLeft></MatchCardLeft>
-          <div
-            style={{
-              background: "green",
-              height: "150px",
-              width: "30%",
-            }}
-          ></div>
-          <MatchCardRight></MatchCardRight>
-        </CardSection>
-      </CurrentMatches>
 
+        {teams.map((team, i) => {
+          const name = teams[i]?.name;
+          const score = team?.matches[i]?.score;
+          const img = teams[i].imgs;
+          return (
+            <CardSection>
+              <MatchCard name={name} score={score} img={img}></MatchCard>
+            </CardSection>
+          );
+        })}
+      </CurrentMatches>
       <Swiper
-        spaceBetween={40}
-        slidesPerView={4}
-        loop={true}
+        className="swiper"
+        spaceBetween={4}
+        slidesPerView={3}
+        loop={false}
         centerInsufficientSlides={true}
-        centeredSlides={false}
+        centeredSlides={true}
         centeredSlidesBounds={true}
         autoplay={true}
-        speed={300}
+        speed={1000}
+        pagination={true}
         modules={[Autoplay]}
+        style={{
+          width: "50%",
+          margin: "0",
+          display: "flex",
+          flexDirection: "row",
+          height: "35vh",
+          marginRight: "auto",
+          marginLeft: "auto",
+          transform: "none",
+        }}
       >
-        <TeamContainer></TeamContainer>
-        <TeamContainer style={{ background: "red" }}></TeamContainer>
-        <TeamContainer style={{ background: "green" }}></TeamContainer>
+        {teams.map((team, i) => {
+          const name = teams[i].name;
+          const img = teams[i].imgs;
+
+          return (
+            <SwiperSlide>
+              <TeamCard
+                teamName={name}
+                teamImg={img}
+                style={{ backgroundColor: "green", color: "black" }}
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </HomeFlex>
   );

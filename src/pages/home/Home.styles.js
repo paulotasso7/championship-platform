@@ -9,7 +9,7 @@ export const ContainerNav = styled.div`
 
 export const BannerContainer = styled.div`
   text-align: center;
-  color: darkturquoise;
+  color: #ff4f0e;
   z-index: -1;
   font-size: 5vw;
   height: 75vh;
@@ -34,10 +34,18 @@ export const CurrentMatches = styled.section`
   background: black;
   width: 80%;
   justify-content: center;
-  /* box-sizing: border-box; */
+  margin-left: auto;
+  margin-right: auto;
   @media (max-width: 768px) {
     position: initial;
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+  }
+  @media (min-width: 1750px) {
+    position: initial;
+    width: 60%;
     display: flex;
     flex-direction: column;
     box-sizing: content-box;
@@ -62,7 +70,7 @@ export const HomeFlex = styled.div`
 `;
 
 export const ButtonContainer = styled.ul`
-  background-color: #0e0e0e;
+  background-color: #0f0f0f;
   height: 50px;
   display: flex;
   position: relative;
@@ -81,20 +89,26 @@ export const ButtonContainer = styled.ul`
     position: "absolute";
     margin-left: auto;
     margin-right: auto;
+    background-color: black;
   }
 `;
 
 export const Button = styled.button`
   background: #0e0e0e;
-  font-size: 22px;
-  color: white;
+  font-size: 18px;
+  color: #ff4f0e;
   text-decoration: none;
   white-space: nowrap;
   border: none;
   display: flex;
   justify-items: flex-start;
   align-items: center;
+
   @media (max-width: 768px) {
+    min-width: 25 0px;
+    max-width: 250px;
+    background: black;
+
     width: 100%;
     display: flex;
     justify-content: center;
@@ -103,10 +117,11 @@ export const Button = styled.button`
   }
 
   :focus {
-    color: #353535;
-    background-color: red;
+    color: #0f0f0f;
+    background-color: #ff4f0e;
     height: 50px;
-    padding: 5px;
+    padding: 30px;
     display: flex;
+    clip-path: polygon(0% 0%, 100% 0, 100% 0, 85% 100%, 0% 100%);
   }
 `;

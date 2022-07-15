@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   height: 111px;
   width: 35vw;
-  background: #353535;
-  color: #ff7600;
+  background: #0f0f0f;
+  color: #ff4f0e;
   border-radius: 15px;
   display: flex;
 
@@ -22,5 +22,31 @@ export const CardSection = styled.div`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+  }
+`;
+
+export const Scorer = styled.div`
+  background: black;
+  height: 150px;
+  width: 30%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 4rem;
+  }
+  @media (max-width: 768px) {
+    margin: 10px;
+    width: 100%;
+    p {
+      font-size: 3rem;
+    }
+    h6 {
+      font-size: 1rem;
+      align-self: center;
+      margin: 15px;
+    }
   }
 `;

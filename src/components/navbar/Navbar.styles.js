@@ -5,7 +5,7 @@ export const MenuLink = styled.a`
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: #ff7600;
+  color: #ff4f0e;
   transition: all 0.3s ease-in;
   font-size: 0.9rem;
   &:hover {
@@ -28,7 +28,7 @@ export const Nav = styled.div`
 
 export const Logo = styled.a`
   padding: 1rem 0;
-  color: #ff7600;
+  color: #ff4f0e;
   text-decoration: none;
   font-weight: 800;
   font-size: 1.7rem;
