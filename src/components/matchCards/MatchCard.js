@@ -11,7 +11,6 @@ export const MatchCard = ({ name, score, img }) => {
             width: "0",
             position: "sticky",
             borderColor: "black",
-            minWidth: "200px",
           }}
         >
           <img
@@ -24,6 +23,7 @@ export const MatchCard = ({ name, score, img }) => {
           style={{
             width: "100%",
             height: "5vw",
+            minWidth: "300px",
           }}
         >
           <p
@@ -96,7 +96,7 @@ export const MatchCard = ({ name, score, img }) => {
       <CardContainer>
         <div
           id="qlq"
-          style={{ width: "0", position: "absolute", borderColor: "black" }}
+          style={{ width: "0px", position: "absolute", borderColor: "black" }}
         >
           <img
             src="/assets/images/team1.png"
