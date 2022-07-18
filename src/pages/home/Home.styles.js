@@ -125,3 +125,11 @@ export const Button = styled.button`
     clip-path: polygon(0% 0%, 100% 0, 100% 0, 85% 100%, 0% 100%);
   }
 `;
+
+export const PartnersDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+`;

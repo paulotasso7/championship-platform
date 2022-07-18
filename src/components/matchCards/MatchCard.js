@@ -1,7 +1,6 @@
-import team from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
 import { CardContainer, Scorer } from "./MatchCard.styles";
 
-export const MatchCard = ({ name, score, img }) => {
+export const MatchCard = ({ name, score, img, name2, img2, score2 }) => {
   return (
     <>
       <CardContainer>
@@ -23,7 +22,7 @@ export const MatchCard = ({ name, score, img }) => {
           style={{
             width: "100%",
             height: "5vw",
-            minWidth: "300px",
+            minWidth: "200px",
           }}
         >
           <p
@@ -83,7 +82,7 @@ export const MatchCard = ({ name, score, img }) => {
             letterSpacing: "-1.5px",
           }}
         >
-          {score}:{11}
+          {score}:{score2}
         </p>
         <h6
           style={{
@@ -94,13 +93,10 @@ export const MatchCard = ({ name, score, img }) => {
         </h6>
       </Scorer>
       <CardContainer>
-        <div
-          id="qlq"
-          style={{ width: "0px", position: "absolute", borderColor: "black" }}
-        >
+        <div id="qlq" style={{ width: "0px", borderColor: "black" }}>
           <img
-            src="/assets/images/team1.png"
-            style={{ transform: "translate(20vw,-18%)" }}
+            src={img2}
+            style={{ transform: "translate(15vw,-18%)", position: "sticky" }}
             alt="wlw"
           />
         </div>
@@ -123,7 +119,7 @@ export const MatchCard = ({ name, score, img }) => {
               textSizeAdjust: "100%",
             }}
           >
-            {team[1].name}
+            {name2}
           </p>
 
           <div

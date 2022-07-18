@@ -24,6 +24,7 @@ export const Nav = styled.div`
   left: 0;
   right: 0;
   height: 20vh;
+  z-index: 999;
 `;
 
 export const Logo = styled.a`

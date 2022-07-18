@@ -15,9 +15,9 @@ export const Navbar = () => {
       </DropMenu>
       <Menu isOpen={isOpen}>
         <MenuLink href="">Our Work</MenuLink>
-        <MenuLink href="">About</MenuLink>
-        <MenuLink href="">Careers</MenuLink>
-        <MenuLink href="">Contact</MenuLink>
+        <MenuLink href="">News</MenuLink>
+        <MenuLink href="">Sign Up</MenuLink>
+        <MenuLink href="">Login</MenuLink>
       </Menu>
     </Nav>
   );

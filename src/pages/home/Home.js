@@ -9,6 +9,7 @@ import {
   MatchLink,
   HomeFlex,
   ButtonContainer,
+  PartnersDiv,
 } from "./Home.styles";
 import { CardSection } from "../../components/matchCards/MatchCard.styles";
 import { TeamCard } from "../../components/teamCards/TeamCard";
@@ -57,19 +58,30 @@ function Home() {
           const name = teams[i]?.name;
           const score = team?.matches[i]?.score;
           const img = teams[i].imgs;
+          const name2 = teams[i + 1]?.name;
+          const img2 = teams[i + 1]?.imgs;
+          const score2 = team?.matches[i + 1]?.score;
+
           return (
             <CardSection>
-              <MatchCard name={name} score={score} img={img}></MatchCard>
+              <MatchCard
+                name={name}
+                score={score}
+                img={img}
+                name2={name2}
+                img2={img2}
+                score2={score2}
+              ></MatchCard>
             </CardSection>
           );
         })}
       </CurrentMatches>
       <Swiper
         className="swiper"
-        spaceBetween={4}
+        spaceBetween={20}
         slidesPerView={3}
         loop={false}
-        centerInsufficientSlides={true}
+        centerInsufficientSlides={false}
         centeredSlides={true}
         centeredSlidesBounds={true}
         autoplay={true}
@@ -77,13 +89,14 @@ function Home() {
         pagination={true}
         modules={[Autoplay]}
         style={{
-          width: "50%",
+          width: "65%",
           margin: "0",
           display: "flex",
           flexDirection: "row",
-          height: "35vh",
+          height: "45vh",
           marginRight: "auto",
           marginLeft: "auto",
+          marginBottom: "50px",
           transform: "none",
         }}
       >
@@ -96,12 +109,38 @@ function Home() {
               <TeamCard
                 teamName={name}
                 teamImg={img}
-                style={{ backgroundColor: "green", color: "black" }}
+                style={{
+                  backgroundColor: "green",
+                  color: "black",
+                  margin: "20px",
+                }}
               />
             </SwiperSlide>
           );
         })}
       </Swiper>
+      <PartnersDiv>
+        <h1 color="white">OUR PARTNERS</h1>
+        <ul
+          style={{
+            listStyle: "none",
+            padding: "0",
+            flexDirection: "row",
+            display: "flex",
+          }}
+        >
+          <li>PARTNER1</li>
+          <li
+            style={{
+              paddingLeft: "10px",
+              paddingRight: "10px",
+            }}
+          >
+            PARTNER2
+          </li>
+          <li>PARTNER3</li>
+        </ul>
+      </PartnersDiv>
     </HomeFlex>
   );
 }

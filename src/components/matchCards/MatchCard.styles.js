@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  height: 111px;
-  width: 35vw;
+  height: 90px;
+  width: 400px;
   background: #0f0f0f;
   color: #ff4f0e;
   border-radius: 15px;
   display: flex;
-
   @media (max-width: 768px) {
     margin: 10px;
-    width: 80vw;
+    width: 400px;
     font-size: 1rem;
   }
 `;
@@ -19,6 +18,7 @@ export const CardSection = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 40px;
+  justify-content: center;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
