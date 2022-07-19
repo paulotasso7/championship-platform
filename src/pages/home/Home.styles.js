@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const ContainerNav = styled.div`
-  height: 20vh;
-  position: fixed;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4);
-`;
-
 export const BannerContainer = styled.div`
   text-align: center;
   color: #ff4f0e;
@@ -130,6 +123,22 @@ export const PartnersDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 60%;
   align-items: center;
+  height: 300px;
+  border: 2px white dotted;
+  margin-left: auto;
+  margin-right: auto;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    flex-direction: row;
+    display: flex;
+  }
+
+  li:nth-child(2) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `;

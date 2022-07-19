@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TeamContainer = styled.div`
   height: 420px;
-  width: 280px;
+  width: 289px;
   background: #0f0f0f;
   display: flex;
   justify-content: center;
