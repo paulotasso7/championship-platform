@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MenuLink = styled.a`
+export const MenuLink = styled.div`
   padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
@@ -19,15 +19,16 @@ export const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  position: relative;
   top: 0;
   left: 0;
   right: 0;
   height: 20vh;
   z-index: 999;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
-export const Logo = styled.a`
+export const Logo = styled.div`
   padding: 1rem 0;
   color: #ff4f0e;
   text-decoration: none;

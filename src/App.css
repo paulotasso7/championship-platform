@@ -2,4 +2,9 @@ body {
   margin: 0;
   font-family: Graduate;
   background: black;
+  color: #ff4f0e;
+}
+
+* {
+  text-decoration: none;
 }

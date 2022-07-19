@@ -1,12 +1,15 @@
 import { Nav, Logo, DropMenu, Menu, MenuLink } from "./Navbar.styles";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Nav>
-      <Logo href="">
-        champs<span>platform</span>
+      <Logo>
+        <Link to="/">
+          champs<span>platform</span>
+        </Link>
       </Logo>
       <DropMenu onClick={() => setIsOpen(!isOpen)}>
         <span />
@@ -17,7 +20,9 @@ export const Navbar = () => {
         <MenuLink href="">Our Work</MenuLink>
         <MenuLink href="">News</MenuLink>
         <MenuLink href="">Sign Up</MenuLink>
-        <MenuLink href="">Login</MenuLink>
+        <MenuLink href="">
+          <Link to="/login">Login</Link>
+        </MenuLink>
       </Menu>
     </Nav>
   );

@@ -1,9 +1,10 @@
 //components import
-import { Navbar } from "../../components/navbar/Navbar";
 import { MatchCard } from "../../components/matchCards/MatchCard";
+import { TeamCard } from "../../components/teamCards/TeamCard";
+
+//style imports
 import {
   Button,
-  ContainerNav,
   BannerContainer,
   CurrentMatches,
   MatchLink,
@@ -12,7 +13,6 @@ import {
   PartnersDiv,
 } from "./Home.styles";
 import { CardSection } from "../../components/matchCards/MatchCard.styles";
-import { TeamCard } from "../../components/teamCards/TeamCard";
 
 //carousel imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,9 +25,6 @@ import teams from "/home/paulotasso/Projetos/championships-platform/src/data/tea
 function Home() {
   return (
     <HomeFlex>
-      <ContainerNav>
-        <Navbar />
-      </ContainerNav>
       <BannerContainer id="container-test">
         <img
           src="https://cdn.wallpapersafari.com/42/75/d8ptQ3.jpg"
@@ -78,7 +75,7 @@ function Home() {
       </CurrentMatches>
       <Swiper
         className="swiper"
-        spaceBetween={20}
+        spaceBetween={10}
         slidesPerView={3}
         loop={false}
         centerInsufficientSlides={false}
@@ -89,11 +86,11 @@ function Home() {
         pagination={true}
         modules={[Autoplay]}
         style={{
-          width: "65%",
+          width: "80%",
           margin: "0",
           display: "flex",
           flexDirection: "row",
-          height: "45vh",
+          height: "320px",
           marginRight: "auto",
           marginLeft: "auto",
           marginBottom: "50px",
@@ -120,25 +117,11 @@ function Home() {
         })}
       </Swiper>
       <PartnersDiv>
-        <h1 color="white">OUR PARTNERS</h1>
-        <ul
-          style={{
-            listStyle: "none",
-            padding: "0",
-            flexDirection: "row",
-            display: "flex",
-          }}
-        >
-          <li>PARTNER1</li>
-          <li
-            style={{
-              paddingLeft: "10px",
-              paddingRight: "10px",
-            }}
-          >
-            PARTNER2
-          </li>
-          <li>PARTNER3</li>
+        <h1>OUR PARTNERS</h1>
+        <ul>
+          <li key="p1">PARTNER1</li>
+          <li key="p2">PARTNER2</li>
+          <li key="p3">PARTNER3</li>
         </ul>
       </PartnersDiv>
     </HomeFlex>
