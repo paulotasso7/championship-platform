@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import de pages
@@ -11,6 +11,8 @@ import "./App.css";
 //import de componentes
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
+
+import React from "react";
 
 function App() {
   // useEffect(() => {

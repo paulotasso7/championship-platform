@@ -3,8 +3,17 @@ body {
   font-family: Graduate;
   background: black;
   color: #ff4f0e;
+  height: 100vh;
 }
 
 * {
   text-decoration: none;
+}
+
+#root {
+  height: 100%;
+}
+
+html {
+  height: 100%;
 }

@@ -19,9 +19,9 @@ export const Navbar = () => {
       <Menu isOpen={isOpen}>
         <MenuLink href="">Our Work</MenuLink>
         <MenuLink href="">News</MenuLink>
-        <MenuLink href="">Sign Up</MenuLink>
+        <MenuLink href="">Champs</MenuLink>
         <MenuLink href="">
-          <Link to="/login">Login</Link>
+          <Link to="/login">Sign In</Link>
         </MenuLink>
       </Menu>
     </Nav>

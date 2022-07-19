@@ -4,5 +4,7 @@ export const LoginForm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
+  position: relative;
+  top: 40px;
 `;

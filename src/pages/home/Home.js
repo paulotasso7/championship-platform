@@ -76,7 +76,7 @@ function Home() {
       <Swiper
         className="swiper"
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={4}
         loop={false}
         centerInsufficientSlides={false}
         centeredSlides={true}
@@ -86,7 +86,7 @@ function Home() {
         pagination={true}
         modules={[Autoplay]}
         style={{
-          width: "80%",
+          width: "60%",
           margin: "0",
           display: "flex",
           flexDirection: "row",
@@ -109,7 +109,7 @@ function Home() {
                 style={{
                   backgroundColor: "green",
                   color: "black",
-                  margin: "20px",
+                  // margin: "20px",
                 }}
               />
             </SwiperSlide>
