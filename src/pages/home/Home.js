@@ -23,9 +23,74 @@ import "swiper/css";
 import teams from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
 
 function Home() {
+  const matchCardRender = teams.map((team, i) => {
+    const name = teams[i]?.name;
+    const score = team?.matches[i]?.score;
+    const img = teams[i].imgs;
+    const name2 = teams[i + 1]?.name;
+    const img2 = teams[i + 1]?.imgs;
+    const score2 = team?.matches[i + 1]?.score;
+
+    return (
+      <CardSection>
+        <MatchCard
+          name={name}
+          score={score}
+          img={img}
+          name2={name2}
+          img2={img2}
+          score2={score2}
+        ></MatchCard>
+      </CardSection>
+    );
+  });
+
+  const teamCardRender = teams.map((team, i) => {
+    const name = teams[i].name;
+    const img = teams[i].imgs;
+
+    return (
+      <SwiperSlide>
+        <TeamCard
+          teamName={name}
+          teamImg={img}
+          style={{
+            backgroundColor: "green",
+            color: "black",
+            // margin: "20px",
+          }}
+        />
+      </SwiperSlide>
+    );
+  });
+
+  const swiperProps = {
+    spaceBetween: 10,
+    slidesPerView: 3,
+    loop: false,
+    centerInsufficientSlides: false,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+    autoplay: true,
+    speed: 1000,
+    pagination: true,
+    modules: [Autoplay],
+    style: {
+      width: "60%",
+      margin: "0",
+      display: "flex",
+      flexDirection: "row",
+      height: "320px",
+      marginRight: "auto",
+      marginLeft: "auto",
+      marginBottom: "50px",
+      transform: "none",
+    },
+  };
+
   return (
     <HomeFlex>
-      <BannerContainer id="container-test">
+      <BannerContainer>
         <img
           src="https://cdn.wallpapersafari.com/42/75/d8ptQ3.jpg"
           alt="home-banner"
@@ -36,7 +101,7 @@ function Home() {
           platform
         </p>
       </BannerContainer>
-      <CurrentMatches id="matches-box">
+      <CurrentMatches>
         <ButtonContainer>
           <MatchLink key={1}>
             <Button>CURRENT MATCHES</Button>
@@ -50,72 +115,9 @@ function Home() {
             <Button>RESULTS</Button>
           </MatchLink>
         </ButtonContainer>
-
-        {teams.map((team, i) => {
-          const name = teams[i]?.name;
-          const score = team?.matches[i]?.score;
-          const img = teams[i].imgs;
-          const name2 = teams[i + 1]?.name;
-          const img2 = teams[i + 1]?.imgs;
-          const score2 = team?.matches[i + 1]?.score;
-
-          return (
-            <CardSection>
-              <MatchCard
-                name={name}
-                score={score}
-                img={img}
-                name2={name2}
-                img2={img2}
-                score2={score2}
-              ></MatchCard>
-            </CardSection>
-          );
-        })}
+        {matchCardRender}
       </CurrentMatches>
-      <Swiper
-        className="swiper"
-        spaceBetween={10}
-        slidesPerView={4}
-        loop={false}
-        centerInsufficientSlides={false}
-        centeredSlides={true}
-        centeredSlidesBounds={true}
-        autoplay={true}
-        speed={1000}
-        pagination={true}
-        modules={[Autoplay]}
-        style={{
-          width: "60%",
-          margin: "0",
-          display: "flex",
-          flexDirection: "row",
-          height: "320px",
-          marginRight: "auto",
-          marginLeft: "auto",
-          marginBottom: "50px",
-          transform: "none",
-        }}
-      >
-        {teams.map((team, i) => {
-          const name = teams[i].name;
-          const img = teams[i].imgs;
-
-          return (
-            <SwiperSlide>
-              <TeamCard
-                teamName={name}
-                teamImg={img}
-                style={{
-                  backgroundColor: "green",
-                  color: "black",
-                  // margin: "20px",
-                }}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <Swiper {...swiperProps}>{teamCardRender}</Swiper>
       <PartnersDiv>
         <h1>OUR PARTNERS</h1>
         <ul>

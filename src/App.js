@@ -12,7 +12,7 @@ import "./App.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 function App() {
   // useEffect(() => {
@@ -27,6 +27,11 @@ function App() {
   //     .catch((e) => console.log("eeeeeeeeerr ~>", e));
   // });
 
+  useEffect(() => {
+    fetch("../src/data/users.json")
+      .then((res) => res.json())
+      .then((r) => console.log(r));
+  });
   return (
     <BrowserRouter>
       <Navbar />

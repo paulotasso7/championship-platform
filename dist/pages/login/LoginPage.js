@@ -7,15 +7,23 @@ exports.LoginPage = void 0;
 const react_1 = require("react");
 const react_2 = __importDefault(require("react"));
 const LoginPage_styles_1 = require("./LoginPage.styles");
+const users = require("../src/data/users.json");
 const LoginPage = () => {
-    const [inputEmail, setInputEmail] = (0, react_1.useState)("");
+    let [inputEmail, setInputEmail] = (0, react_1.useState)("");
     const [inputPassword, setInputPassword] = (0, react_1.useState)("");
     function onEmailInputChange(event) {
-        console.log(event.currentTarget.value);
+        setInputEmail(event.currentTarget.value);
     }
     function onPasswordInputChange(event) {
-        console.log(event.currentTarget.value);
+        setInputPassword(event.currentTarget.value);
     }
+    const onSignInSubmit = () => {
+        if (!inputEmail.length || !inputPassword.length) {
+            alert("preencha os dados corretamente");
+        }
+        if (inputEmail === users.email && inputPassword === users.password) {
+        }
+    };
     return (react_2.default.createElement(LoginPage_styles_1.LoginForm, null,
         react_2.default.createElement("div", null,
             react_2.default.createElement("main", null,

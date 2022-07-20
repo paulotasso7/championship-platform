@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { LoginForm } from "./LoginPage.styles";
 
@@ -7,17 +7,26 @@ interface Props {
   password: string;
 }
 
+const users = require("../src/data/users.json");
+
 export const LoginPage: React.FC<Props> = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
   function onEmailInputChange(event: React.FormEvent<HTMLInputElement>) {
-    console.log(event.currentTarget.value);
+    setInputEmail(event.currentTarget.value);
   }
 
   function onPasswordInputChange(event: React.FormEvent<HTMLInputElement>) {
-    console.log(event.currentTarget.value);
+    setInputPassword(event.currentTarget.value);
   }
+
+  const onSignInSubmit = () => {
+    if (!inputEmail.length || !inputPassword.length) {
+      alert("preencha os dados corretamente");
+    }
+    users.find();
+  };
 
   return (
     <LoginForm>
