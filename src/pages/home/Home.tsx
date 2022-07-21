@@ -22,24 +22,59 @@ import "swiper/css";
 //data import
 import teams from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
 
+type MatchCardType = {
+  name: string;
+  score: number;
+  img: string;
+  name2: string;
+  img2: string;
+  score2: number;
+};
+
+const swiperProps = {
+  spaceBetween: 10,
+  slidesPerView: 3,
+  loop: false,
+  centerInsufficientSlides: false,
+  centeredSlides: true,
+  centeredSlidesBounds: true,
+  autoplay: true,
+  speed: 1000,
+  pagination: true,
+  modules: [Autoplay],
+  style: {
+    width: "60%",
+    margin: "0",
+    display: "flex",
+    flexDirection: "row",
+    height: "320px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginBottom: "50px",
+    transform: "none",
+  } as React.CSSProperties,
+};
+
 function Home() {
-  const matchCardRender = teams.map((team, i) => {
-    const name = teams[i]?.name;
-    const score = team?.matches[i]?.score;
-    const img = teams[i].imgs;
-    const name2 = teams[i + 1]?.name;
-    const img2 = teams[i + 1]?.imgs;
-    const score2 = team?.matches[i + 1]?.score;
+  const matchCardRender = teams.map((team, i): JSX.Element => {
+    const matchData: MatchCardType = {
+      name: teams[i]?.name,
+      score: team?.matches[i]?.score,
+      img: teams[i].imgs,
+      name2: teams[i + 1]?.name,
+      img2: teams[i + 1]?.imgs,
+      score2: team?.matches[i + 1]?.score,
+    };
 
     return (
       <CardSection>
         <MatchCard
-          name={name}
-          score={score}
-          img={img}
-          name2={name2}
-          img2={img2}
-          score2={score2}
+          name={matchData.name}
+          score={matchData.score}
+          img={matchData.img}
+          name2={matchData.name2}
+          img2={matchData.img2}
+          score2={matchData.score2}
         ></MatchCard>
       </CardSection>
     );
@@ -51,42 +86,10 @@ function Home() {
 
     return (
       <SwiperSlide>
-        <TeamCard
-          teamName={name}
-          teamImg={img}
-          style={{
-            backgroundColor: "green",
-            color: "black",
-            // margin: "20px",
-          }}
-        />
+        <TeamCard teamName={name} teamImg={img} />
       </SwiperSlide>
     );
   });
-
-  const swiperProps = {
-    spaceBetween: 10,
-    slidesPerView: 3,
-    loop: false,
-    centerInsufficientSlides: false,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    autoplay: true,
-    speed: 1000,
-    pagination: true,
-    modules: [Autoplay],
-    style: {
-      width: "60%",
-      margin: "0",
-      display: "flex",
-      flexDirection: "row",
-      height: "320px",
-      marginRight: "auto",
-      marginLeft: "auto",
-      marginBottom: "50px",
-      transform: "none",
-    },
-  };
 
   return (
     <HomeFlex>
