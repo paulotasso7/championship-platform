@@ -1,31 +1,47 @@
+// react imports
 import { useState } from "react";
 import React from "react";
+
+// styles imports
 import { LoginForm } from "./LoginPage.styles";
 
+// utilities imports
+import { useNavigate } from "react-router-dom";
+
+//data import
 const users = require("/home/paulotasso/Projetos/championships-platform/src/data/users.json");
 
 export const LoginPage: React.FC = (): JSX.Element => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
-  function onEmailInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const navigate = useNavigate();
+
+  function onEmailInputChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void {
     setInputEmail(event.target.value);
   }
 
-  function onPasswordInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onPasswordInputChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void {
     setInputPassword(event.target.value);
   }
 
-  function onSubmitSignIn(event: any): void {
+  function onSubmitSignIn(event: any): JSX.Element | void {
     event.preventDefault();
     const user: object = users.find(
-      (x: { email: string; password: string }) =>
-        x.email === inputEmail && x.password === inputPassword
+      (userInfo: { email: string; password: string }) =>
+        userInfo.email === inputEmail && userInfo.password === inputPassword
     );
+
     if (!user) {
       alert("email ou senha incorretos");
     }
-    console.log(user);
+    if (user) {
+      navigate("/userpage");
+    }
   }
 
   return (
@@ -47,34 +63,33 @@ export const LoginPage: React.FC = (): JSX.Element => {
                 justifyContent: "center",
               }}
             >
-              <div>
-                <label htmlFor="email-address">Email</label>
-                <input
-                  type="email"
-                  name="email-address"
-                  id="email-address"
-                  onChange={onEmailInputChange}
-                  value={inputEmail}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={inputPassword}
-                  onChange={onPasswordInputChange}
-                />
-              </div>
-              <label>
-                <input type="checkbox" /> Remember me
-              </label>
-              <button style={{ padding: "5px" }} onClick={onSubmitSignIn}>
-                Sign In
-              </button>
+              <>
+                <div>
+                  <label htmlFor="email-address">Email</label>
+                  <input
+                    type="email"
+                    name="email-address"
+                    id="email-address"
+                    onChange={onEmailInputChange}
+                    value={inputEmail}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={inputPassword}
+                    onChange={onPasswordInputChange}
+                  />
+                </div>
+                <label>
+                  <input type="checkbox" /> Remember me
+                </label>
+                <button onClick={onSubmitSignIn}>Sign In </button>
+              </>
             </fieldset>
-            <div></div>
             <div
               style={{
                 display: "flex",

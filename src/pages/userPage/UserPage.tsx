@@ -1,3 +1,7 @@
 export const UserPage: React.FC = (): JSX.Element => {
-  return <div></div>;
+  return (
+    <div>
+      <p>P de Paulo</p>
+    </div>
+  );
 };
