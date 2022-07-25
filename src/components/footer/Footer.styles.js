@@ -8,6 +8,8 @@ export const FooterContainer = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+  position: relative;
+  bottom: 0;
   ul {
     list-style: none;
     display: flex;

@@ -1,6 +1,11 @@
-import styled from "styled-components";
-
-export const BannerContainer = styled.div`
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PartnersDiv = exports.Button = exports.ButtonContainer = exports.HomeFlex = exports.MatchLink = exports.CurrentMatches = exports.BannerContainer = void 0;
+const styled_components_1 = __importDefault(require("styled-components"));
+exports.BannerContainer = styled_components_1.default.div `
   text-align: center;
   color: #ff4f0e;
   z-index: -1;
@@ -22,8 +27,7 @@ export const BannerContainer = styled.div`
     min-height: 200px;
   }
 `;
-
-export const CurrentMatches = styled.section`
+exports.CurrentMatches = styled_components_1.default.section `
   background: black;
   width: 80%;
   justify-content: center;
@@ -44,8 +48,7 @@ export const CurrentMatches = styled.section`
     box-sizing: content-box;
   }
 `;
-
-export const MatchLink = styled.li`
+exports.MatchLink = styled_components_1.default.li `
   color: orange;
   margin: 0px 0px 0px 0px;
   text-decoration: none;
@@ -56,13 +59,11 @@ export const MatchLink = styled.li`
     flex-wrap: nowrap;
   }
 `;
-
-export const HomeFlex = styled.div`
+exports.HomeFlex = styled_components_1.default.div `
   display: flex;
   flex-direction: column;
 `;
-
-export const ButtonContainer = styled.ul`
+exports.ButtonContainer = styled_components_1.default.ul `
   background-color: #0f0f0f;
   height: 50px;
   display: flex;
@@ -85,8 +86,7 @@ export const ButtonContainer = styled.ul`
     background-color: black;
   }
 `;
-
-export const Button = styled.button`
+exports.Button = styled_components_1.default.button `
   background: #0e0e0e;
   font-size: 18px;
   color: #ff4f0e;
@@ -118,8 +118,7 @@ export const Button = styled.button`
     clip-path: polygon(0% 0%, 100% 0, 100% 0, 85% 100%, 0% 100%);
   }
 `;
-
-export const PartnersDiv = styled.div`
+exports.PartnersDiv = styled_components_1.default.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,16 +139,5 @@ export const PartnersDiv = styled.div`
   li:nth-child(2) {
     padding-left: 10px;
     padding-right: 10px;
-  }
-`;
-
-export const CardSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 40px;
-  justify-content: center;
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
   }
 `;
