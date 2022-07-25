@@ -142,3 +142,14 @@ export const PartnersDiv = styled.div`
     padding-right: 10px;
   }
 `;
+
+export const CardSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: center;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;

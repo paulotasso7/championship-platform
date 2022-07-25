@@ -1,5 +1,6 @@
-// import { useEffect } from "react";
+// import de utilitys
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
 
 // import de pages
 import Home from "./pages/home/Home";
@@ -12,26 +13,13 @@ import "./App.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
 
-import React, { useEffect } from "react";
+import userData from "./data/users.json";
 
-function App() {
-  // useEffect(() => {
-  //   fetch(" https://mtgmelee.com", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application / json",
-  //     },
-  //   })
-  //     .then((r) => r.json())
-  //     .then((r) => console.log(r))
-  //     .catch((e) => console.log("eeeeeeeeerr ~>", e));
-  // });
-
+function App(): JSX.Element {
   useEffect(() => {
-    fetch("../src/data/users.json")
-      .then((res) => res.json())
-      .then((r) => console.log(r));
+    console.log(userData);
   });
+
   return (
     <BrowserRouter>
       <Navbar />

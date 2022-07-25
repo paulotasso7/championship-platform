@@ -1,0 +1,41 @@
+[
+    {
+        "name": "jorge",
+        "password": "123d",
+        "email": "jorge@ginho.com",
+        "favorite_game": "csgo",
+        "birth_date": "12/04/2000",
+        "id": 1,
+        "champs": [
+            { "champ_name": "champ1", "active": true, "phase": 4 },
+            { "champ_name": "champ2", "active": true, "phase": 1 },
+            { "champ_name": "champ3", "active": false, "phase": null }
+        ]
+    },
+    {
+        "name": "cornelio",
+        "password": "112123d",
+        "email": "cor@nelio.com",
+        "favorite_game": "lol",
+        "birth_date": "08/06/1956",
+        "id": 2,
+        "champs": [
+            { "champ_name": "champ1", "active": true, "phase": 3 },
+            { "champ_name": "champ2", "active": false, "phase": null },
+            { "champ_name": "champ3", "active": false, "phase": null }
+        ]
+    },
+    {
+        "name": "moacir",
+        "password": "sequoia",
+        "email": "moa@great.com",
+        "favorite_game": "csgo",
+        "birth_date": "18/11/1990",
+        "id": 3,
+        "champs": [
+            { "champ_name": "champ1", "active": true, "phase": 4 },
+            { "champ_name": "champ2", "active": true, "phase": 1 },
+            { "champ_name": "champ3", "active": true, "phase": 6 }
+        ]
+    }
+]

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PartnersDiv = exports.Button = exports.ButtonContainer = exports.HomeFlex = exports.MatchLink = exports.CurrentMatches = exports.BannerContainer = void 0;
+exports.CardSection = exports.PartnersDiv = exports.Button = exports.ButtonContainer = exports.HomeFlex = exports.MatchLink = exports.CurrentMatches = exports.BannerContainer = void 0;
 const styled_components_1 = __importDefault(require("styled-components"));
 exports.BannerContainer = styled_components_1.default.div `
   text-align: center;
@@ -139,5 +139,15 @@ exports.PartnersDiv = styled_components_1.default.div `
   li:nth-child(2) {
     padding-left: 10px;
     padding-right: 10px;
+  }
+`;
+exports.CardSection = styled_components_1.default.div `
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: center;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

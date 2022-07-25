@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import { LoginForm } from "./LoginPage.styles";
 
-interface Props {
-  email: string;
-  password: string;
-}
+const users = require("/home/paulotasso/Projetos/championships-platform/src/data/users.json");
 
-const users = require("../src/data/users.json");
-
-export const LoginPage: React.FC<Props> = () => {
+export const LoginPage: React.FC = (): JSX.Element => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
-  function onEmailInputChange(event: React.FormEvent<HTMLInputElement>) {
-    setInputEmail(event.currentTarget.value);
+  function onEmailInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputEmail(event.target.value);
   }
 
-  function onPasswordInputChange(event: React.FormEvent<HTMLInputElement>) {
-    setInputPassword(event.currentTarget.value);
+  function onPasswordInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputPassword(event.target.value);
   }
 
-  const onSignInSubmit = () => {
-    if (!inputEmail.length || !inputPassword.length) {
-      alert("preencha os dados corretamente");
+  function onSubmitSignIn(event: any): void {
+    event.preventDefault();
+    const user: object = users.find(
+      (x: { email: string; password: string }) =>
+        x.email === inputEmail && x.password === inputPassword
+    );
+    if (!user) {
+      alert("email ou senha incorretos");
     }
-    users.find();
-  };
+    console.log(user);
+  }
 
   return (
     <LoginForm>
@@ -54,23 +54,25 @@ export const LoginPage: React.FC<Props> = () => {
                   name="email-address"
                   id="email-address"
                   onChange={onEmailInputChange}
+                  value={inputEmail}
                 />
               </div>
               <div>
-                <label className="db fw6 lh-copy f6" htmlFor="password">
-                  Password
-                </label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   id="password"
+                  value={inputPassword}
                   onChange={onPasswordInputChange}
                 />
               </div>
               <label>
                 <input type="checkbox" /> Remember me
               </label>
-              <input type="submit" value="Sign in" />
+              <button style={{ padding: "5px" }} onClick={onSubmitSignIn}>
+                Sign In
+              </button>
             </fieldset>
             <div></div>
             <div

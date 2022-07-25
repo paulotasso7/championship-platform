@@ -11,8 +11,8 @@ import {
   HomeFlex,
   ButtonContainer,
   PartnersDiv,
+  CardSection,
 } from "./Home.styles";
-import { CardSection } from "../../components/matchCards/MatchCard.styles";
 
 //carousel imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,6 +21,7 @@ import "swiper/css";
 
 //data import
 import teams from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
+import React from "react";
 
 type MatchCardType = {
   name: string;
@@ -80,9 +81,9 @@ function Home() {
     );
   });
 
-  const teamCardRender = teams.map((team, i) => {
-    const name = teams[i].name;
-    const img = teams[i].imgs;
+  const teamCardRender = teams.map((team, i): JSX.Element => {
+    const name: string = teams[i].name;
+    const img: string = teams[i].imgs;
 
     return (
       <SwiperSlide>
@@ -110,9 +111,7 @@ function Home() {
             <Button>CURRENT MATCHES</Button>
           </MatchLink>
           <MatchLink key={2}>
-            <Button style={{ display: "flex", justifySelf: "center" }}>
-              NEXT MATCHES
-            </Button>
+            <Button>NEXT MATCHES</Button>
           </MatchLink>
           <MatchLink key={3}>
             <Button>RESULTS</Button>
@@ -129,6 +128,7 @@ function Home() {
           <li key="p3">PARTNER3</li>
         </ul>
       </PartnersDiv>
+      s
     </HomeFlex>
   );
 }
