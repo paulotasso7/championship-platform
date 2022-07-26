@@ -128,7 +128,6 @@ function Home() {
           <li key="p3">PARTNER3</li>
         </ul>
       </PartnersDiv>
-      s
     </HomeFlex>
   );
 }

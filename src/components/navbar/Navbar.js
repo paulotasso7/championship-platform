@@ -21,7 +21,7 @@ export const Navbar = () => {
         <MenuLink href="">News</MenuLink>
         <MenuLink href="">Champs</MenuLink>
         <MenuLink href="">
-          <Link to="/login">Sign In</Link>
+          <Link to="/login">Login</Link>
         </MenuLink>
       </Menu>
     </Nav>
