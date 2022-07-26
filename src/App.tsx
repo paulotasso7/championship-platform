@@ -1,6 +1,5 @@
 // import de utilitys
 import { Routes, Route, Outlet } from "react-router-dom";
-import React, { useEffect } from "react";
 
 // import de pages
 import Home from "./pages/home/Home";

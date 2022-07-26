@@ -8,7 +8,7 @@ import { LoginForm } from "./LoginPage.styles";
 // utilities imports
 import { useNavigate } from "react-router-dom";
 
-import { UserPage } from "../userPage/UserPage";
+// import { UserPage } from "../userPage/UserPage";
 
 //data import
 const users = require("/home/paulotasso/Projetos/championships-platform/src/data/users.json");
@@ -16,6 +16,7 @@ const users = require("/home/paulotasso/Projetos/championships-platform/src/data
 export const LoginPage: React.FC = (): JSX.Element => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,7 +45,8 @@ export const LoginPage: React.FC = (): JSX.Element => {
     event.preventDefault();
 
     if (loggedUser) {
-      navigate("/userpage");
+      setIsSignedIn(true);
+      navigate("/userpage", { replace: true });
       console.log(loggedUser);
       // return <UserPage />;
     }
