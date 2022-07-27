@@ -6,7 +6,7 @@ import React from "react";
 import { LoginForm } from "./LoginPage.styles";
 
 // utilities imports
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // import { UserPage } from "../userPage/UserPage";
 
@@ -47,8 +47,6 @@ export const LoginPage: React.FC = (): JSX.Element => {
     if (loggedUser) {
       setIsSignedIn(true);
       navigate("/userpage", { replace: true });
-      console.log(loggedUser);
-      // return <UserPage />;
     }
     if (inputEmail === "" || inputPassword === "") {
       alert("preencha os dados");
@@ -110,7 +108,7 @@ export const LoginPage: React.FC = (): JSX.Element => {
                 alignItems: "center",
               }}
             >
-              <a href="#0">Sign Up</a>
+              <Link to="/register">Register</Link>
               <br></br>
               <a href="#0">Forgot your password?</a>
             </div>

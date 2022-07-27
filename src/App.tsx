@@ -5,6 +5,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/home/Home";
 import { LoginPage } from "./pages/login/LoginPage";
 import { UserPage } from "./pages/userPage/UserPage";
+import { Register } from "./pages/register/Register";
 
 // import de styles
 import "./App.css";
@@ -18,25 +19,21 @@ import { Footer } from "./components/footer/Footer";
 function App(): JSX.Element {
   return (
     <>
-      <>
-        <Routes>
-          <Route
-            element={
-              <>
-                <Navbar />
-                <Outlet />
-                <Footer />
-              </>
-            }
-          >
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-        </Routes>
-      </>
-
       <Routes>
-        <Route path="/userpage" element={<UserPage />} />
+        <Route
+          element={
+            <>
+              <Navbar />
+              <Outlet />
+              <Footer />
+            </>
+          }
+        >
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+        <Route path="userpage" element={<UserPage />} />
       </Routes>
     </>
   );
