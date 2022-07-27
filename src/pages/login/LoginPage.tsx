@@ -1,12 +1,14 @@
 // react imports
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import React from "react";
 
 // styles imports
 import { LoginForm } from "./LoginPage.styles";
 
 // utilities imports
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+// import { UserPage } from "../userPage/UserPage";
 
 //data import
 const users = require("/home/paulotasso/Projetos/championships-platform/src/data/users.json");
@@ -14,8 +16,18 @@ const users = require("/home/paulotasso/Projetos/championships-platform/src/data
 export const LoginPage: React.FC = (): JSX.Element => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const navigate = useNavigate();
+
+  const loggedUser: object = useMemo(
+    () =>
+      users.find(
+        (userInfo: { email: string; password: string }) =>
+          userInfo.email === inputEmail && userInfo.password === inputPassword
+      ),
+    [inputEmail, inputPassword]
+  );
 
   function onEmailInputChange(
     event: React.ChangeEvent<HTMLInputElement>
@@ -31,16 +43,13 @@ export const LoginPage: React.FC = (): JSX.Element => {
 
   function onSubmitSignIn(event: any): JSX.Element | void {
     event.preventDefault();
-    const user: object = users.find(
-      (userInfo: { email: string; password: string }) =>
-        userInfo.email === inputEmail && userInfo.password === inputPassword
-    );
 
-    if (!user) {
-      alert("email ou senha incorretos");
+    if (loggedUser) {
+      setIsSignedIn(true);
+      navigate("/userpage", { replace: true });
     }
-    if (user) {
-      navigate("/userpage");
+    if (inputEmail === "" || inputPassword === "") {
+      alert("preencha os dados");
     }
   }
 
@@ -99,7 +108,7 @@ export const LoginPage: React.FC = (): JSX.Element => {
                 alignItems: "center",
               }}
             >
-              <a href="#0">Sign Up</a>
+              <Link to="/register">Register</Link>
               <br></br>
               <a href="#0">Forgot your password?</a>
             </div>

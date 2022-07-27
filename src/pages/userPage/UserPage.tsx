@@ -1,7 +1,12 @@
+import { Sidebar } from "../../components/sidebar/Sidebar";
+import { USerNav } from "../../components/userNav/UserNav";
+
 export const UserPage: React.FC = (): JSX.Element => {
   return (
     <div>
-      <p>P de Paulo</p>
+      <Sidebar />
+      <p style={{ color: "yellow" }}>sdqd</p>
+      <USerNav></USerNav>
     </div>
   );
 };

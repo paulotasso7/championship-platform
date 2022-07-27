@@ -18,21 +18,34 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/css";
+import React from "react";
 
 //data import
-import teams from "/home/paulotasso/Projetos/championships-platform/src/data/teams.json";
-import React from "react";
+const teams = require("/home/paulotasso/Projetos/championships-platform/src/data/teams.json");
 
 type MatchCardType = {
   name: string;
-  score: number;
+  score?: number;
   img: string;
   name2: string;
   img2: string;
-  score2: number;
+  score2?: number;
 };
 
-const swiperProps = {
+interface IMatchCard {
+  id: number;
+  name: string;
+  active: boolean;
+  imgs: string;
+  matches: {
+    matchId: number;
+    date: string;
+    score: number;
+    tournament: string;
+  }[];
+}
+
+const swiperProps: object = {
   spaceBetween: 10,
   slidesPerView: 3,
   loop: false,
@@ -57,31 +70,32 @@ const swiperProps = {
 };
 
 function Home() {
-  const matchCardRender = teams.map((team, i): JSX.Element => {
-    const matchData: MatchCardType = {
-      name: teams[i]?.name,
-      score: team?.matches[i]?.score,
-      img: teams[i].imgs,
-      name2: teams[i + 1]?.name,
-      img2: teams[i + 1]?.imgs,
-      score2: team?.matches[i + 1]?.score,
-    };
+  const matchCardRender = teams.map(
+    (team: IMatchCard, i: number): JSX.Element => {
+      const matchData: MatchCardType = {
+        name: teams[i]?.name,
+        score: team?.matches[i]?.score,
+        img: teams[i].imgs,
+        name2: teams[i + 1]?.name,
+        img2: teams[i + 1]?.imgs,
+        score2: team?.matches[i + 1]?.score,
+      };
+      return (
+        <CardSection>
+          <MatchCard
+            name={matchData.name}
+            score={matchData.score}
+            img={matchData.img}
+            name2={matchData.name2}
+            img2={matchData.img2}
+            score2={matchData.score2}
+          ></MatchCard>
+        </CardSection>
+      );
+    }
+  );
 
-    return (
-      <CardSection>
-        <MatchCard
-          name={matchData.name}
-          score={matchData.score}
-          img={matchData.img}
-          name2={matchData.name2}
-          img2={matchData.img2}
-          score2={matchData.score2}
-        ></MatchCard>
-      </CardSection>
-    );
-  });
-
-  const teamCardRender = teams.map((team, i): JSX.Element => {
+  const teamCardRender = teams.map((team: object, i: number) => {
     const name: string = teams[i].name;
     const img: string = teams[i].imgs;
 
@@ -128,7 +142,6 @@ function Home() {
           <li key="p3">PARTNER3</li>
         </ul>
       </PartnersDiv>
-      s
     </HomeFlex>
   );
 }
