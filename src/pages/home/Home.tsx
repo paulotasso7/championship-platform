@@ -18,7 +18,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/css";
-import React from "react";
+import React, { useEffect } from "react";
 
 //data import
 const teams = require("/home/paulotasso/Projetos/championships-platform/src/data/teams.json");
@@ -104,6 +104,18 @@ function Home() {
         <TeamCard teamName={name} teamImg={img} />
       </SwiperSlide>
     );
+  });
+
+  useEffect(() => {
+    try {
+      fetch(
+        "https://api.toornament.com/schema/oas/v2/organizer/tournament.json"
+      )
+        .then((r) => r.json())
+        .then((r) => console.log(r));
+    } catch (e) {
+      console.log(e);
+    }
   });
 
   return (

@@ -1,40 +1,134 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 
 //utilities imports
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 //style imports
 import { RegisterForm } from "./Register.styled";
 
+//data import
+import usersData from "/home/paulotasso/Projetos/championships-platform/src/data/users.json";
+
+//utilities imports
+import { v4 as uuidv4 } from "uuid";
+
+interface UserInterface {
+  name: string;
+  userId: string;
+  email: string;
+  birthDate: string;
+  country: string;
+  password: string;
+  cPassword?: string;
+}
+
+const userId = uuidv4();
+
 export const Register: React.FC = (): JSX.Element => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [confirmedPassword, setConfirmedPassword] = useState("");
+  const password = useRef<any | null>(null);
+  const cPassword = useRef<any | null>(null);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+  const [cPasswordClass, setCPasswordClass] = useState("form-control");
 
-  function onEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    setEmail(event.target.value);
-  }
-  function onNameChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    setName(event.target.value);
-  }
+  const user: UserInterface = {
+    name: "",
+    userId: userId,
+    email: "",
+    birthDate: "",
+    country: "",
+    password: "",
+  };
 
-  function onPasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    setPassword(event.target.value);
-  }
+  const [userObj, setUserObj] = useState(user);
 
-  function confirmPassword(event: React.ChangeEvent<HTMLInputElement>): void {
-    setConfirmedPassword(event.target.value);
-    if (confirmedPassword !== password) {
-      alert("diferent password");
+  useEffect(() => {
+    if (isCPasswordDirty) {
+      if (password.current.defaulValue === cPassword.current.defaulValue) {
+        setShowErrorMessage(false);
+        setCPasswordClass("form-control is-valid");
+      } else {
+        setShowErrorMessage(true);
+        setCPasswordClass("form-control is-invalid");
+      }
     }
+  }, [isCPasswordDirty]);
+
+  const checkPasswords = (e: any): void => {
+    setIsCPasswordDirty(true);
+    if (isCPasswordDirty) {
+      if (password.current.defaulValue === cPassword.current.defaulValue) {
+        setCPasswordClass("form-control is-valid");
+        setShowErrorMessage(false);
+      } else {
+        console.log("different");
+        setShowErrorMessage(true);
+        setCPasswordClass("form-control is-invalid");
+      }
+    }
+  };
+
+  const addUserToDataBase = () => {
+    usersData.push(userObj);
+  };
+  const userMemo = useMemo(addUserToDataBase, [userObj]);
+
+  function onEmailChange(event: any) {
+    user.email = event.target.value;
+    setUserObj(user);
   }
+  function onPasswordChange(event: any) {
+    user.password = event.target.value;
+    setUserObj(user);
+  }
+  function onNameChange(event: any) {
+    user.name = event.target.value;
+    setUserObj(user);
+  }
+
+  function onCPasswordChange(event: any) {
+    user.cPassword = event.target.value;
+    setUserObj(user);
+  }
+
+  function onBirthChange(event: any) {
+    user.birthDate = event.target.value;
+    setUserObj(user);
+  }
+
+  function onCountryChange(event: any) {
+    user.country = event.target.value;
+    setUserObj(user);
+  }
+
+  // function onNameChange(event: React.ChangeEvent<HTMLInputElement>): void {
+  //   setName(event.target.value);
+  // }
+
+  // function onPasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
+  //   setPassword(event.target.value);
+  // }
+
+  // function confirmPassword(): boolean {
+  //   const password: string | null = (
+  //     document.getElementById("password") as HTMLInputElement
+  //   ).value;
+  //   const passwordConfirm: string | null = (
+  //     document.getElementById("password-confirm") as HTMLInputElement
+  //   ).value;
+
+  //   if (password !== passwordConfirm) {
+  //     alert("password different");
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   return (
     <RegisterForm>
       <div>
         <main>
-          <form>
+          <>
             <fieldset
               id="sign_up"
               style={{
@@ -51,14 +145,8 @@ export const Register: React.FC = (): JSX.Element => {
             >
               <>
                 <div>
-                  <label htmlFor="email-address">Name</label>
-                  <input
-                    type="name"
-                    name="name"
-                    id="name"
-                    onChange={onNameChange}
-                    value={name}
-                  />
+                  <label htmlFor="name">Name</label>
+                  <input type="name" name="name" id="name" />
                 </div>
                 <div>
                   <label htmlFor="email-address">Email</label>
@@ -67,7 +155,6 @@ export const Register: React.FC = (): JSX.Element => {
                     name="email-address"
                     id="email-address"
                     onChange={onEmailChange}
-                    value={email}
                   />
                 </div>
                 <div>
@@ -76,8 +163,9 @@ export const Register: React.FC = (): JSX.Element => {
                     type="password"
                     name="password"
                     id="password"
+                    ref={password}
+                    className="form-control"
                     onChange={onPasswordChange}
-                    value={password}
                   />
                 </div>
                 <div>
@@ -86,12 +174,24 @@ export const Register: React.FC = (): JSX.Element => {
                     type="password"
                     name="password-confirm"
                     id="password-confirm"
+                    onChange={checkPasswords}
+                    ref={cPassword}
+                    className={cPasswordClass}
                   />
+                  {showErrorMessage && isCPasswordDirty ? (
+                    <>
+                      <p>deu ruiiiiiiiiim ze</p>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <label>
                   <input type="checkbox" /> Remember me
                 </label>
-                <button>Register </button>
+                <button onClick={() => console.log(usersData)}>
+                  Register{" "}
+                </button>
               </>
             </fieldset>
             <div
@@ -107,7 +207,7 @@ export const Register: React.FC = (): JSX.Element => {
               <br></br>
               <a href="#0">Forgot your password?</a>
             </div>
-          </form>
+          </>
         </main>
       </div>
     </RegisterForm>

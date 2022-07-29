@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Nav>
       <Logo>
@@ -17,10 +18,16 @@ export const Navbar = () => {
         <span />
       </DropMenu>
       <Menu isOpen={isOpen}>
-        <MenuLink href="">Our Work</MenuLink>
-        <MenuLink href="">News</MenuLink>
-        <MenuLink href="">Champs</MenuLink>
-        <MenuLink href="">
+        <MenuLink href="" onClick={() => setIsOpen(!isOpen)}>
+          Our Work
+        </MenuLink>
+        <MenuLink href="" onClick={() => setIsOpen(!isOpen)}>
+          News
+        </MenuLink>
+        <MenuLink href="" onClick={() => setIsOpen(!isOpen)}>
+          Champs
+        </MenuLink>
+        <MenuLink href="" onClick={() => setIsOpen(!isOpen)}>
           <Link to="login">Login</Link>
         </MenuLink>
       </Menu>
