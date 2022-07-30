@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useMemo } from "react";
 
 //utilities imports
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //style imports
 import { RegisterForm } from "./Register.styled";
@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 interface UserInterface {
   name: string;
+  userName: string;
   userId: string;
   email: string;
   birthDate: string;
@@ -33,6 +34,7 @@ export const Register: React.FC = (): JSX.Element => {
 
   const user: UserInterface = {
     name: "",
+    userName: "",
     userId: userId,
     email: "",
     birthDate: "",
@@ -81,13 +83,13 @@ export const Register: React.FC = (): JSX.Element => {
     user.password = event.target.value;
     setUserObj(user);
   }
-  function onNameChange(event: any) {
-    user.name = event.target.value;
+  function onUserNameChange(event: any) {
+    user.userName = event.target.value;
     setUserObj(user);
   }
 
-  function onCPasswordChange(event: any) {
-    user.cPassword = event.target.value;
+  function onNameChange(event: any) {
+    user.name = event.target.value;
     setUserObj(user);
   }
 
@@ -132,7 +134,7 @@ export const Register: React.FC = (): JSX.Element => {
             <fieldset
               id="sign_up"
               style={{
-                padding: "100px",
+                padding: "150px",
                 borderRadius: "100%",
                 height: "200px",
                 width: "200px",
@@ -146,7 +148,39 @@ export const Register: React.FC = (): JSX.Element => {
               <>
                 <div>
                   <label htmlFor="name">Name</label>
-                  <input type="name" name="name" id="name" />
+                  <input
+                    type="name"
+                    name="name"
+                    id="name"
+                    onChange={onNameChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name">User Name</label>
+                  <input
+                    type="user-name"
+                    name="user-name"
+                    id="user-name"
+                    onChange={onUserNameChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name">Country</label>
+                  <input
+                    type="country"
+                    name="country"
+                    id="country"
+                    onChange={onCountryChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name">Birth date</label>
+                  <input
+                    type="birth"
+                    name="birth"
+                    id="birth"
+                    onChange={onBirthChange}
+                  />
                 </div>
                 <div>
                   <label htmlFor="email-address">Email</label>
@@ -180,7 +214,7 @@ export const Register: React.FC = (): JSX.Element => {
                   />
                   {showErrorMessage && isCPasswordDirty ? (
                     <>
-                      <p>deu ruiiiiiiiiim ze</p>
+                      <p>passwords dont match</p>
                     </>
                   ) : (
                     ""
@@ -189,9 +223,7 @@ export const Register: React.FC = (): JSX.Element => {
                 <label>
                   <input type="checkbox" /> Remember me
                 </label>
-                <button onClick={() => console.log(usersData)}>
-                  Register{" "}
-                </button>
+                <button onClick={() => console.log(usersData)}>Register</button>
               </>
             </fieldset>
             <div
