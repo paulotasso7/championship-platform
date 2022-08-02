@@ -8,14 +8,12 @@ import { LoginForm } from "./LoginPage.styles";
 // utilities imports
 import { useNavigate, Link } from "react-router-dom";
 
-// import { UserPage } from "../userPage/UserPage";
-
 //data import
 const users = require("/home/paulotasso/Projetos/championships-platform/src/data/users.json");
 
 export const LoginPage: React.FC = (): JSX.Element => {
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -24,31 +22,31 @@ export const LoginPage: React.FC = (): JSX.Element => {
     () =>
       users.find(
         (userInfo: { email: string; password: string }) =>
-          userInfo.email === inputEmail && userInfo.password === inputPassword
+          userInfo.email === email && userInfo.password === password
       ),
-    [inputEmail, inputPassword]
+    [email, password]
   );
 
   function onEmailInputChange(
     event: React.ChangeEvent<HTMLInputElement>
   ): void {
-    setInputEmail(event.target.value);
+    setEmail(event.target.value);
   }
 
   function onPasswordInputChange(
     event: React.ChangeEvent<HTMLInputElement>
   ): void {
-    setInputPassword(event.target.value);
+    setPassword(event.target.value);
   }
 
   function onSubmitSignIn(event: any): JSX.Element | void {
     event.preventDefault();
-
     if (loggedUser) {
       setIsSignedIn(true);
       navigate("/userpage", { replace: true });
     }
-    if (inputEmail === "" || inputPassword === "") {
+
+    if (email === "" || password === "") {
       alert("preencha os dados");
     }
   }
@@ -80,7 +78,7 @@ export const LoginPage: React.FC = (): JSX.Element => {
                     name="email-address"
                     id="email-address"
                     onChange={onEmailInputChange}
-                    value={inputEmail}
+                    value={email}
                   />
                 </div>
                 <div>
@@ -89,7 +87,7 @@ export const LoginPage: React.FC = (): JSX.Element => {
                     type="password"
                     name="password"
                     id="password"
-                    value={inputPassword}
+                    value={password}
                     onChange={onPasswordInputChange}
                   />
                 </div>

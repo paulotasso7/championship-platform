@@ -14,17 +14,6 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const CardSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 40px;
-  justify-content: center;
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
 export const Scorer = styled.div`
   background: black;
   height: 150px;

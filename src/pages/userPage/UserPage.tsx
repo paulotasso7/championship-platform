@@ -6,7 +6,7 @@ export const UserPage: React.FC = (): JSX.Element => {
     <div>
       <Sidebar />
       <p style={{ color: "yellow" }}>sdqd</p>
-      <USerNav></USerNav>
+      <USerNav />
     </div>
   );
 };

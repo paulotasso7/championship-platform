@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect, useMemo } from "react";
-
+import React, { useRef, useState, useEffect, useCallback } from "react";
 //utilities imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 //style imports
 import { RegisterForm } from "./Register.styled";
@@ -9,8 +9,8 @@ import { RegisterForm } from "./Register.styled";
 //data import
 import usersData from "/home/paulotasso/Projetos/championships-platform/src/data/users.json";
 
-//utilities imports
-import { v4 as uuidv4 } from "uuid";
+//methods imports
+// import handlers from "/home/paulotasso/Projetos/championships-platform/src/utils/registerUtils/index";
 
 interface UserInterface {
   name: string;
@@ -23,26 +23,24 @@ interface UserInterface {
   cPassword?: string;
 }
 
-const userId = uuidv4();
-
 export const Register: React.FC = (): JSX.Element => {
   const password = useRef<any | null>(null);
   const cPassword = useRef<any | null>(null);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
   const [cPasswordClass, setCPasswordClass] = useState("form-control");
-
   const user: UserInterface = {
     name: "",
     userName: "",
-    userId: userId,
+    userId: "",
     email: "",
     birthDate: "",
     country: "",
     password: "",
   };
-
   const [userObj, setUserObj] = useState(user);
+  const userId: string = uuidv4();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isCPasswordDirty) {
@@ -70,61 +68,41 @@ export const Register: React.FC = (): JSX.Element => {
     }
   };
 
-  const addUserToDataBase = () => {
+  const addUserToDataBase = useCallback(() => {
+    userObj.userId = userId;
     usersData.push(userObj);
+    console.log(usersData);
+    navigate("/userpage", { replace: true });
+  }, [userObj, navigate]);
+
+  const handlers = {
+    email: function onEmailChange(event: any) {
+      user.email = event.target.value;
+      setUserObj(user);
+    },
+    psw: function onPasswordChange(event: any) {
+      user.password = event.target.value;
+      setUserObj(user);
+    },
+    username: function onUserNameChange(event: any) {
+      user.userName = event.target.value;
+      setUserObj(user);
+    },
+
+    name: function onNameChange(event: any) {
+      user.name = event.target.value;
+      setUserObj(user);
+    },
+    birth: function onBirthChange(event: any) {
+      user.birthDate = event.target.value;
+      setUserObj(user);
+    },
+
+    country: function onCountryChange(event: any) {
+      user.country = event.target.value;
+      setUserObj(user);
+    },
   };
-  const userMemo = useMemo(addUserToDataBase, [userObj]);
-
-  function onEmailChange(event: any) {
-    user.email = event.target.value;
-    setUserObj(user);
-  }
-  function onPasswordChange(event: any) {
-    user.password = event.target.value;
-    setUserObj(user);
-  }
-  function onUserNameChange(event: any) {
-    user.userName = event.target.value;
-    setUserObj(user);
-  }
-
-  function onNameChange(event: any) {
-    user.name = event.target.value;
-    setUserObj(user);
-  }
-
-  function onBirthChange(event: any) {
-    user.birthDate = event.target.value;
-    setUserObj(user);
-  }
-
-  function onCountryChange(event: any) {
-    user.country = event.target.value;
-    setUserObj(user);
-  }
-
-  // function onNameChange(event: React.ChangeEvent<HTMLInputElement>): void {
-  //   setName(event.target.value);
-  // }
-
-  // function onPasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
-  //   setPassword(event.target.value);
-  // }
-
-  // function confirmPassword(): boolean {
-  //   const password: string | null = (
-  //     document.getElementById("password") as HTMLInputElement
-  //   ).value;
-  //   const passwordConfirm: string | null = (
-  //     document.getElementById("password-confirm") as HTMLInputElement
-  //   ).value;
-
-  //   if (password !== passwordConfirm) {
-  //     alert("password different");
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   return (
     <RegisterForm>
@@ -152,7 +130,7 @@ export const Register: React.FC = (): JSX.Element => {
                     type="name"
                     name="name"
                     id="name"
-                    onChange={onNameChange}
+                    onChange={handlers.name}
                   />
                 </div>
                 <div>
@@ -161,7 +139,7 @@ export const Register: React.FC = (): JSX.Element => {
                     type="user-name"
                     name="user-name"
                     id="user-name"
-                    onChange={onUserNameChange}
+                    onChange={handlers.username}
                   />
                 </div>
                 <div>
@@ -170,7 +148,7 @@ export const Register: React.FC = (): JSX.Element => {
                     type="country"
                     name="country"
                     id="country"
-                    onChange={onCountryChange}
+                    onChange={handlers.country}
                   />
                 </div>
                 <div>
@@ -179,7 +157,7 @@ export const Register: React.FC = (): JSX.Element => {
                     type="birth"
                     name="birth"
                     id="birth"
-                    onChange={onBirthChange}
+                    onChange={handlers.birth}
                   />
                 </div>
                 <div>
@@ -188,7 +166,7 @@ export const Register: React.FC = (): JSX.Element => {
                     type="email"
                     name="email-address"
                     id="email-address"
-                    onChange={onEmailChange}
+                    onChange={handlers.email}
                   />
                 </div>
                 <div>
@@ -199,7 +177,8 @@ export const Register: React.FC = (): JSX.Element => {
                     id="password"
                     ref={password}
                     className="form-control"
-                    onChange={onPasswordChange}
+                    value={user.password}
+                    onChange={handlers.psw}
                   />
                 </div>
                 <div>
@@ -223,7 +202,7 @@ export const Register: React.FC = (): JSX.Element => {
                 <label>
                   <input type="checkbox" /> Remember me
                 </label>
-                <button onClick={() => console.log(usersData)}>Register</button>
+                <button onClick={addUserToDataBase}>Register</button>
               </>
             </fieldset>
             <div
