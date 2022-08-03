@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 //utilities imports
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -24,11 +24,8 @@ interface UserInterface {
 }
 
 export const Register: React.FC = (): JSX.Element => {
-  const password = useRef<any | null>(null);
-  const cPassword = useRef<any | null>(null);
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
-  const [cPasswordClass, setCPasswordClass] = useState("form-control");
+  const [confirm, setConfirm] = useState("");
+  const [error, serError] = useState("");
   const user: UserInterface = {
     name: "",
     userName: "",
@@ -42,38 +39,12 @@ export const Register: React.FC = (): JSX.Element => {
   const userId: string = uuidv4();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isCPasswordDirty) {
-      if (password.current.defaulValue === cPassword.current.defaulValue) {
-        setShowErrorMessage(false);
-        setCPasswordClass("form-control is-valid");
-      } else {
-        setShowErrorMessage(true);
-        setCPasswordClass("form-control is-invalid");
-      }
-    }
-  }, [isCPasswordDirty]);
-
-  const checkPasswords = (e: any): void => {
-    setIsCPasswordDirty(true);
-    if (isCPasswordDirty) {
-      if (password.current.defaulValue === cPassword.current.defaulValue) {
-        setCPasswordClass("form-control is-valid");
-        setShowErrorMessage(false);
-      } else {
-        console.log("different");
-        setShowErrorMessage(true);
-        setCPasswordClass("form-control is-invalid");
-      }
-    }
-  };
-
   const addUserToDataBase = useCallback(() => {
     userObj.userId = userId;
     usersData.push(userObj);
     console.log(usersData);
     navigate("/userpage", { replace: true });
-  }, [userObj, navigate]);
+  }, [userObj]);
 
   const handlers = {
     email: function onEmailChange(event: any) {
@@ -83,6 +54,9 @@ export const Register: React.FC = (): JSX.Element => {
     psw: function onPasswordChange(event: any) {
       user.password = event.target.value;
       setUserObj(user);
+    },
+    confirm: function onPasswordChange(event: any) {
+      setConfirm(event.target.value);
     },
     username: function onUserNameChange(event: any) {
       user.userName = event.target.value;
@@ -131,6 +105,7 @@ export const Register: React.FC = (): JSX.Element => {
                     name="name"
                     id="name"
                     onChange={handlers.name}
+                    value={userObj.name}
                   />
                 </div>
                 <div>
@@ -140,6 +115,7 @@ export const Register: React.FC = (): JSX.Element => {
                     name="user-name"
                     id="user-name"
                     onChange={handlers.username}
+                    value={userObj.userName}
                   />
                 </div>
                 <div>
@@ -149,6 +125,7 @@ export const Register: React.FC = (): JSX.Element => {
                     name="country"
                     id="country"
                     onChange={handlers.country}
+                    value={userObj.country}
                   />
                 </div>
                 <div>
@@ -158,6 +135,7 @@ export const Register: React.FC = (): JSX.Element => {
                     name="birth"
                     id="birth"
                     onChange={handlers.birth}
+                    value={userObj.birthDate}
                   />
                 </div>
                 <div>
@@ -167,6 +145,7 @@ export const Register: React.FC = (): JSX.Element => {
                     name="email-address"
                     id="email-address"
                     onChange={handlers.email}
+                    value={userObj.email}
                   />
                 </div>
                 <div>
@@ -175,10 +154,9 @@ export const Register: React.FC = (): JSX.Element => {
                     type="password"
                     name="password"
                     id="password"
-                    ref={password}
                     className="form-control"
-                    value={user.password}
                     onChange={handlers.psw}
+                    value={userObj.password}
                   />
                 </div>
                 <div>
@@ -187,17 +165,9 @@ export const Register: React.FC = (): JSX.Element => {
                     type="password"
                     name="password-confirm"
                     id="password-confirm"
-                    onChange={checkPasswords}
-                    ref={cPassword}
-                    className={cPasswordClass}
+                    value={confirm}
+                    onChange={handlers.confirm}
                   />
-                  {showErrorMessage && isCPasswordDirty ? (
-                    <>
-                      <p>passwords dont match</p>
-                    </>
-                  ) : (
-                    ""
-                  )}
                 </div>
                 <label>
                   <input type="checkbox" /> Remember me
