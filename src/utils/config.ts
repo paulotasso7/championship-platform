@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyDmkOTnjiLZcPZpRfeEOKCQx2AUePYnA5k",
-  authDomain: "championship-platform.firebaseapp.com",
-  projectId: "championship-platform",
-  storageBucket: "championship-platform.appspot.com",
-  messagingSenderId: "565790506408",
-  appId: "1:565790506408:web:166b2b3f2b4bf9ee05b19d",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };

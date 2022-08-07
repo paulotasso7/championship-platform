@@ -14,8 +14,6 @@ import "./App.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
 
-// import userData from "./data/users.json";
-
 function App(): JSX.Element {
   return (
     <>
