@@ -3,37 +3,19 @@ import React, { useState, useCallback, useRef } from "react";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
+//interfaces imports
+import { UserInterface } from "../../utils/interfaces/interfaces";
+
 //style imports
 import { Fieldset, RegisterBox, RegisterForm } from "./Register.styled";
 
 //data import
 import usersData from "/home/paulotasso/Projetos/championships-platform/src/data/users.json";
-
-interface UserInterface {
-  name: string;
-  userName: string;
-  userId: string;
-  email: string;
-  birthDate: string;
-  country: string;
-  password: string;
-  cPassword?: string;
-}
-
-const user = {
-  name: "",
-  userName: "",
-  userId: "",
-  email: "",
-  birthDate: "",
-  country: "",
-  password: "",
-};
+import { user } from "../../utils/contexts/AuthContext";
 
 export const Register: React.FC = (): JSX.Element => {
   const confirmRef = useRef("");
   const [error, serError] = useState<string>("");
-
   const userRef = useRef<UserInterface>(user);
   const userId: string = uuidv4();
   const navigate: NavigateFunction = useNavigate();

@@ -1,7 +1,7 @@
-import { Home } from "../pages/home/Home";
-import { LoginPage } from "../pages/login/LoginPage";
-import { Register } from "../pages/register/Register";
-import { UserPage } from "../pages/userpage/UserPage";
+import { Home } from "../../pages/home/Home";
+import { LoginPage } from "../../pages/login/LoginPage";
+import { Register } from "../../pages/register/Register";
+import { UserPage } from "../../pages/userpage/UserPage";
 
 export default interface IRoute {
   path: string;

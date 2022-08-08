@@ -20,30 +20,14 @@ import { Autoplay } from "swiper";
 import "swiper/css";
 import React, { useEffect } from "react";
 
+//interfaces imports
+import { IMatchCard } from "../../utils/interfaces/interfaces";
+
+//types imports
+import { MatchCardType } from "../../utils/types/types";
+
 //data import
 const teams = require("/home/paulotasso/Projetos/championships-platform/src/data/teams.json");
-
-type MatchCardType = {
-  name: string;
-  score?: number;
-  img: string;
-  name2: string;
-  img2: string;
-  score2?: number;
-};
-
-interface IMatchCard {
-  id: number;
-  name: string;
-  active: boolean;
-  imgs: string;
-  matches: {
-    matchId: number;
-    date: string;
-    score: number;
-    tournament: string;
-  }[];
-}
 
 const swiperProps: object = {
   spaceBetween: 10,
