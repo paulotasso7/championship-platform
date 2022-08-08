@@ -69,7 +69,7 @@ const swiperProps: object = {
   } as React.CSSProperties,
 };
 
-function Home() {
+export const Home: React.FC = (): JSX.Element => {
   const matchCardRender = teams.map(
     (team: IMatchCard, i: number): JSX.Element => {
       const matchData: MatchCardType = {
@@ -156,6 +156,4 @@ function Home() {
       </PartnersDiv>
     </HomeFlex>
   );
-}
-
-export default Home;
+};

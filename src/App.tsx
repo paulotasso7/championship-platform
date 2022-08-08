@@ -2,10 +2,11 @@
 import { Routes, Route, Outlet } from "react-router-dom";
 
 // import de pages
-import Home from "./pages/home/Home";
+import { Home } from "./pages/home/Home";
 import { LoginPage } from "./pages/login/LoginPage";
-import { UserPage } from "./pages/userPage/UserPage";
+import { UserPage } from "./pages/userpage/UserPage";
 import { Register } from "./pages/register/Register";
+import { routes } from "./utils/routes";
 
 // import de styles
 import "./App.css";
@@ -27,7 +28,7 @@ function App(): JSX.Element {
             </>
           }
         >
-          <Route path="/" element={<Home />} />
+          <Route path={routes[0].path} element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
         </Route>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 //utilities imports
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -8,9 +8,6 @@ import { Fieldset, RegisterBox, RegisterForm } from "./Register.styled";
 
 //data import
 import usersData from "/home/paulotasso/Projetos/championships-platform/src/data/users.json";
-
-//methods imports
-// import handlers from "/home/paulotasso/Projetos/championships-platform/src/utils/registerUtils/index";
 
 interface UserInterface {
   name: string;
@@ -23,18 +20,21 @@ interface UserInterface {
   cPassword?: string;
 }
 
+const user = {
+  name: "",
+  userName: "",
+  userId: "",
+  email: "",
+  birthDate: "",
+  country: "",
+  password: "",
+};
+
 export const Register: React.FC = (): JSX.Element => {
-  const [confirm, setConfirm] = useState<string>("");
+  const confirmRef = useRef("");
   const [error, serError] = useState<string>("");
-  const [user, setUser] = useState<UserInterface>({
-    name: "",
-    userName: "",
-    userId: "",
-    email: "",
-    birthDate: "",
-    country: "",
-    password: "",
-  });
+
+  const userRef = useRef<UserInterface>(user);
   const userId: string = uuidv4();
   const navigate: NavigateFunction = useNavigate();
 
@@ -45,29 +45,29 @@ export const Register: React.FC = (): JSX.Element => {
     navigate("/userpage", { replace: true });
   }, [user]);
 
-  const handlers = {
-    email: function onEmailChange(user: any) {
-      setUser(user.email);
-    },
-    psw: function onPasswordChange(user: any) {
-      setUser(user.password);
-    },
-    confirm: function onConfirmChange(user: any) {
-      setConfirm(user);
-    },
-    username: function onUserNameChange(user: any) {
-      setUser(user.userName);
-    },
-    name: function onNameChange(user: any) {
-      setUser(user.name);
-    },
-    birth: function onBirthChange(event: any) {
-      setUser(event.birthDate);
-    },
-    country: function onCountryChange(user: any) {
-      setUser(user.country);
-    },
-  };
+  // const handlers = {
+  //   email: function onEmailChange(user: any) {
+  //     setUser(user.email);
+  //   },
+  //   psw: function onPasswordChange(user: any) {
+  //     setUser(user.password);
+  //   },
+  //   confirm: function onConfirmChange(user: any) {
+  //     setConfirm(user);
+  //   },
+  //   username: function onUserNameChange(user: any) {
+  //     setUser(user.userName);
+  //   },
+  //   name: function onNameChange(user: any) {
+  //     setUser(user.name);
+  //   },
+  //   birth: function onBirthChange(event: any) {
+  //     setUser(event.birthDate);
+  //   },
+  //   country: function onCountryChange(user: any) {
+  //     setUser(user.country);
+  //   },
+  // };
 
   return (
     <RegisterForm>
@@ -82,8 +82,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="name"
                     name="name"
                     id="name"
-                    onChange={(e) => handlers.name(e.target.value)}
-                    value={user.name}
+                    // onChange={(e) => handlers.name(e.target.value)}
+                    ref={userRef.current.name}
                   />
                 </div>
                 <div>
@@ -92,8 +92,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="user-name"
                     name="user-name"
                     id="user-name"
-                    onChange={(e) => handlers.username(e.target.value)}
-                    value={user.userName}
+                    // onChange={(e) => handlers.username(e.target.value)}
+                    ref={userRef.current.userName}
                   />
                 </div>
                 <div>
@@ -102,8 +102,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="country"
                     name="country"
                     id="country"
-                    onChange={(e) => handlers.country(e.target.value)}
-                    value={user.country}
+                    // onChange={(e) => handlers.country(e.target.value)}
+                    ref={userRef.current.country}
                   />
                 </div>
                 <div>
@@ -112,8 +112,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="birth"
                     name="birth"
                     id="birth"
-                    onChange={(e) => handlers.birth(e.target.value)}
-                    value={user.birthDate}
+                    // onChange={(e) => handlers.birth(e.target.value)}
+                    ref={userRef.current.birthDate}
                   />
                 </div>
                 <div>
@@ -122,8 +122,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="email"
                     name="email-address"
                     id="email-address"
-                    onChange={(e) => handlers.email(e.target.value)}
-                    value={user.email}
+                    // onChange={(e) => handlers.email(e.target.value)}
+                    ref={userRef.current.email}
                   />
                 </div>
                 <div>
@@ -133,8 +133,8 @@ export const Register: React.FC = (): JSX.Element => {
                     name="password"
                     id="password"
                     className="form-control"
-                    onChange={handlers.psw}
-                    value={user.password}
+                    // onChange={handlers.psw}
+                    ref={userRef.current.password}
                   />
                 </div>
                 <div>
@@ -143,8 +143,8 @@ export const Register: React.FC = (): JSX.Element => {
                     type="password"
                     name="password-confirm"
                     id="password-confirm"
-                    value={confirm}
-                    onChange={handlers.confirm}
+                    ref={confirmRef.current}
+                    // onChange={handlers.confirm}
                   />
                 </div>
                 <label>
