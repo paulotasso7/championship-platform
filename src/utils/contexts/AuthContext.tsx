@@ -1,5 +1,5 @@
-import React, { useContext, createContext } from "react";
-import { UserInterface } from "../interfaces/interfaces";
+import React, { useContext } from "react";
+import { Props, UserInterface } from "../interfaces/interfaces";
 
 export const user: UserInterface = {
   name: "",
@@ -11,13 +11,12 @@ export const user: UserInterface = {
   password: "",
 };
 
-const AuthContext = createContext(user);
+const AuthContext = React.createContext<UserInterface | null>(user);
+
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }): JSX.Element {
-  return (
-    <AuthContext.Provider value={AuthContext}>{children}</AuthContext.Provider>
-  );
-}
+export const AuthProvider: React.FC<Props> = ({ children }): JSX.Element => {
+  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+};

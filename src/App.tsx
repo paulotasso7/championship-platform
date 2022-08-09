@@ -28,9 +28,14 @@ function App(): JSX.Element {
             </>
           }
         >
-          <Route path={routes[0].path} element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
+          {routes.map((route) => {
+            if (route.path === "/")
+              return <Route path={route.path} element={<Home />} />;
+            if (route.path === "/login")
+              return <Route path={route.path} element={<LoginPage />} />;
+            if (route.path === "/register")
+              return <Route path={route.path} element={<Register />} />;
+          })}
         </Route>
         <Route path="userpage" element={<UserPage />} />
       </Routes>

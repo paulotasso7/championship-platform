@@ -21,3 +21,7 @@ export interface IMatchCard {
     tournament: string;
   }[];
 }
+
+export interface Props {
+  children: React.ReactNode;
+}

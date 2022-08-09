@@ -28,7 +28,7 @@ export const Navbar = () => {
           Champs
         </MenuLink>
         <MenuLink href="" onClick={() => setIsOpen(!isOpen)}>
-          <Link to="login">Login</Link>
+          <Link to="/login">Login</Link>
         </MenuLink>
       </Menu>
     </Nav>
