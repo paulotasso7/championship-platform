@@ -21,7 +21,7 @@ import "swiper/css";
 import React, { useEffect } from "react";
 
 //interfaces imports
-import { IMatchCard } from "../../utils/interfaces/interfaces";
+import { MatchCardInterface } from "../../utils/interfaces/interfaces";
 
 //types imports
 import { MatchCardType } from "../../utils/types/types";
@@ -55,7 +55,7 @@ const swiperProps: object = {
 
 export const Home: React.FC = (): JSX.Element => {
   const matchCardRender = teams.map(
-    (team: IMatchCard, i: number): JSX.Element => {
+    (team: MatchCardInterface, i: number): JSX.Element => {
       const matchData: MatchCardType = {
         name: teams[i]?.name,
         score: team?.matches[i]?.score,

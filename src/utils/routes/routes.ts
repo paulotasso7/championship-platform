@@ -6,7 +6,7 @@ import { UserPage } from "../../pages/userpage/UserPage";
 export default interface IRoute {
   path: string;
   exact: boolean;
-  component: any;
+  component: any | null;
   name: string;
   protected: boolean;
 }
@@ -17,21 +17,21 @@ export const routes: IRoute[] = [
     exact: true,
     component: Home,
     name: "Home Page",
-    protected: true,
+    protected: false,
   },
   {
     path: "/login",
     exact: true,
     component: LoginPage,
     name: "Login",
-    protected: true,
+    protected: false,
   },
   {
     path: "/register",
     exact: true,
     component: Register,
     name: "Register",
-    protected: true,
+    protected: false,
   },
   {
     path: "/userpage",

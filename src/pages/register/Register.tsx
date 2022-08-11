@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
+
 //utilities imports
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -15,7 +16,7 @@ import { user } from "../../utils/contexts/AuthContext";
 
 export const Register: React.FC = (): JSX.Element => {
   const confirmRef = useRef("");
-  const [error, serError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
   const userRef = useRef<UserInterface>(user);
   const userId: string = uuidv4();
   const navigate: NavigateFunction = useNavigate();

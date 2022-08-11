@@ -9,7 +9,7 @@ export interface UserInterface {
   cPassword?: string;
 }
 
-export interface IMatchCard {
+export interface MatchCardInterface {
   id: number;
   name: string;
   active: boolean;
@@ -22,6 +22,6 @@ export interface IMatchCard {
   }[];
 }
 
-export interface Props {
+export interface PropsI {
   children: React.ReactNode;
 }
